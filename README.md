@@ -6,7 +6,7 @@ this project contain 4 api servies.
 3.) Delete Customer to delete existing customer.
 4.) Search Customer to search customer with three criteria such as customer name,citizenId,email.
 #
-#Store Procedure
+Store Procedure
 ![sp_add_cust](https://user-images.githubusercontent.com/62868362/207109177-289ac8b1-5c3c-462c-a9c7-8063852deb45.png)
 ![sp_delete_cust](https://user-images.githubusercontent.com/62868362/207109184-d090ca6d-bb8a-4a6b-89bd-64f48246113d.png)
 ![sp_get_cust1](https://user-images.githubusercontent.com/62868362/207109194-53653cd3-f872-42b0-91d4-43a43fb71511.png)
