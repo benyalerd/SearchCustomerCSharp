@@ -17,7 +17,7 @@ namespace customer.service.main.Controllers
         }
         [HttpPost]
         [Route("SearchCustomer")]
-        public IActionResult GetListBotEntity([FromBody] SearchCustomerRequest request)
+        public IActionResult SearchCustomer([FromBody] SearchCustomerRequest request)
         {
             
             ListCustomer ListCustomer = new ListCustomer();
@@ -32,6 +32,25 @@ namespace customer.service.main.Controllers
                 ListCustomer.IsSuccess = false;
             }
             return Ok(ListCustomer);
+        }
+
+        [HttpPost]
+        [Route("AddCustomer")]
+        public IActionResult AddCustomer([FromBody] AddCustomerRequest request)
+        {
+
+            BaseResponse baseResponse = new BaseResponse();
+            try
+            {
+                baseResponse = _customerservice.AddCustomer(request);
+            }
+            catch (Exception ex)
+            {
+                baseResponse.ErrorMessage = ex.Message;
+                baseResponse.ErrorCode = "003";
+                baseResponse.IsSuccess = false;
+            }
+            return Ok(baseResponse);
         }
     }
 }

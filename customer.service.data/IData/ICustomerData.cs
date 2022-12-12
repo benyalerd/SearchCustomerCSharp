@@ -10,5 +10,8 @@ namespace customer.service.data.IData
     public interface ICustomerData 
     {
        ListCustomer SearchCustomer(SearchCustomerRequest request);
+       bool AddCustomer(AddCustomerRequest request);
+       Customer GetCustomerByCitizenOrEmail(string citizenId,string email);
+       User GetUserByUserId(int userId);
     }
 }

@@ -27,7 +27,6 @@ namespace customer.service.data
             {
                 objCmd.Parameters.AddWithValue(param.name, param.value);
             }
-
             cnn.Open();
             objCmd.Connection = cnn;
             objCmd.CommandText = spName;
@@ -38,7 +37,6 @@ namespace customer.service.data
 
 
             cnn.Close();
-            cnn = null;
             return ds;
         }
 
@@ -60,7 +58,6 @@ namespace customer.service.data
             objCmd.ExecuteNonQuery();
 
             cnn.Close();
-            cnn = null;
            
         }
 

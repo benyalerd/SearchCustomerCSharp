@@ -15,6 +15,44 @@ namespace customer.service.service.Service
         {
             _customerData = customerData;
         }
+
+        public BaseResponse AddCustomer(AddCustomerRequest request)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                User user = _customerData.GetUserByUserId(request.UserId);
+                if (user == null || user.UserId == 0)
+                {
+                    response.ErrorCode = "004";
+                    response.ErrorMessage = "user id is duplicate";
+                    return response;
+                }
+                Customer customer = _customerData.GetCustomerByCitizenOrEmail(request.CitizenId, request.Email);
+                if(customer != null && customer.CustId != 0)
+                {
+                    response.ErrorCode = "004";
+                    response.ErrorMessage = "citizen id or email is duplicate";
+                    return response;
+                }
+                bool isAdd = _customerData.AddCustomer(request);
+                if (!isAdd)
+                {
+                    response.ErrorCode = "005";
+                    response.ErrorMessage = "Failed to add or update customer";
+                    return response;
+                }
+                response.IsSuccess = true;
+                response.ErrorCode = "000";
+                response.ErrorMessage = "Success";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ListCustomer SearchCustomer(SearchCustomerRequest request)
         {
             ListCustomer listCustomers = new ListCustomer();
@@ -25,7 +63,7 @@ namespace customer.service.service.Service
                 {
                     listCustomers.ErrorCode = "002";
                     listCustomers.ErrorMessage = "Not Found Customer Data";
-                    
+                    return listCustomers;
                 }
                 listCustomers.IsSuccess = true;
                 listCustomers.ErrorCode = "000";

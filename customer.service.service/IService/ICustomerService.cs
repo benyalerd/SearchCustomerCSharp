@@ -9,5 +9,6 @@ namespace customer.service.service.IService
     public interface ICustomerService
     {
         ListCustomer SearchCustomer(SearchCustomerRequest request);
+        BaseResponse AddCustomer(AddCustomerRequest request);
     }
 }
