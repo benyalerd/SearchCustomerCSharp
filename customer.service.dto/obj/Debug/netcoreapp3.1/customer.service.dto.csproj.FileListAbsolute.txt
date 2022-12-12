@@ -1,0 +1,10 @@
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\bin\Debug\netcoreapp3.1\customer.service.dto.deps.json
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\bin\Debug\netcoreapp3.1\customer.service.dto.dll
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\bin\Debug\netcoreapp3.1\customer.service.dto.pdb
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.csproj.AssemblyReference.cache
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.AssemblyInfoInputs.cache
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.AssemblyInfo.cs
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.dll
+C:\Users\lenovo\source\repos\customer.service.main\customer.service.dto\obj\Debug\netcoreapp3.1\customer.service.dto.pdb
