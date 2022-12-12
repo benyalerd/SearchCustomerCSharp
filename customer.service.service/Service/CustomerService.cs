@@ -2,13 +2,14 @@
 using customer.service.dto.Model.Request;
 using customer.service.dto.Model.Response;
 using customer.service.service.IService;
+using customer.service.service.Validation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace customer.service.service.Service
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService : CommonValidation,ICustomerService
     {
         private readonly ICustomerData _customerData;
         public CustomerService(ICustomerData customerData)
@@ -21,6 +22,18 @@ namespace customer.service.service.Service
             BaseResponse response = new BaseResponse();
             try
             {
+                if (CheckEmail(request.Email) || CheckBirthDate(request.BirthDate) || CheckCitizenId(request.CitizenId) || CheckTelePhone(request.Telephone))
+                {
+                    response.ErrorCode = "006";
+                    response.ErrorMessage = "request is invalid";
+                    return response;
+                }
+                if (request == null || request.UserId == 0)
+                {
+                    response.ErrorCode = "006";
+                    response.ErrorMessage = "request is invalid";
+                    return response;
+                }
                 User user = _customerData.GetUserByUserId(request.UserId);
                 if (user == null || user.UserId == 0)
                 {
@@ -58,6 +71,12 @@ namespace customer.service.service.Service
             BaseResponse response = new BaseResponse();
             try
             {
+                if(request == null ||request.CustId == 0 || request.UserId == 0)
+                {
+                    response.ErrorCode = "006";
+                    response.ErrorMessage = "request is invalid";
+                    return response;
+                }
                 User user = _customerData.GetUserByUserId(request.UserId);
                 if (user == null || user.UserId == 0)
                 {
@@ -111,6 +130,18 @@ namespace customer.service.service.Service
             BaseResponse response = new BaseResponse();
             try
             {
+                if (CheckBirthDate(request.BirthDate) || CheckTelePhone(request.Telephone))
+                {
+                    response.ErrorCode = "006";
+                    response.ErrorMessage = "request is invalid";
+                    return response;
+                }
+                if (request == null || request.UserId == 0 || request.CustId == 0)
+                {
+                    response.ErrorCode = "006";
+                    response.ErrorMessage = "request is invalid";
+                    return response;
+                }
                 User user = _customerData.GetUserByUserId(request.UserId);
                 if (user == null || user.UserId == 0)
                 {
