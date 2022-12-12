@@ -52,5 +52,43 @@ namespace customer.service.main.Controllers
             }
             return Ok(baseResponse);
         }
+
+        [HttpPost]
+        [Route("UpdateCustomer")]
+        public IActionResult UpdateCustomer([FromBody] UpdateCustomerRequest request)
+        {
+
+            BaseResponse baseResponse = new BaseResponse();
+            try
+            {
+                baseResponse = _customerservice.UpdateCustomer(request);
+            }
+            catch (Exception ex)
+            {
+                baseResponse.ErrorMessage = ex.Message;
+                baseResponse.ErrorCode = "003";
+                baseResponse.IsSuccess = false;
+            }
+            return Ok(baseResponse);
+        }
+
+        [HttpPost]
+        [Route("DeleteCustomer")]
+        public IActionResult DeleteCustomer([FromBody] DeleteCustomerRequest request)
+        {
+
+            BaseResponse baseResponse = new BaseResponse();
+            try
+            {
+                baseResponse = _customerservice.DeleteCustomer(request);
+            }
+            catch (Exception ex)
+            {
+                baseResponse.ErrorMessage = ex.Message;
+                baseResponse.ErrorCode = "003";
+                baseResponse.IsSuccess = false;
+            }
+            return Ok(baseResponse);
+        }
     }
 }

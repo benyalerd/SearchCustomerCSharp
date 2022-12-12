@@ -13,5 +13,7 @@ namespace customer.service.data.IData
        bool AddCustomer(AddCustomerRequest request);
        Customer GetCustomerByCitizenOrEmail(string citizenId,string email);
        User GetUserByUserId(int userId);
+       bool UpdateCustomer(UpdateCustomerRequest request);
+       bool DeleteCustomer(DeleteCustomerRequest request);
     }
 }

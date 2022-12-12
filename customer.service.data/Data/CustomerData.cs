@@ -18,6 +18,8 @@ namespace customer.service.data.Data
         private const string SP_GET_CUSTOMER_BY_CITIZENID_OR_EMAIL = "[SP_GET_CUSTOMER_BY_CITIZENID_OR_EMAIL]";
         private const string SP_GET_USER_BY_USERID = "[SP_GET_USER_BY_USERID]";
         private const string SP_ADD_CUSTOMER = "[SP_ADD_CUSTOMER]";
+        private const string SP_UPDATE_CUSTOMER = "[SP_UPDATE_CUSTOMER]";
+        private const string SP_DELETE_CUSTOMER = "[SP_DELETE_CUSTOMER]";
         #region Constructor
         public CustomerData(string connetionString) : base(connetionString)
         {
@@ -33,10 +35,29 @@ namespace customer.service.data.Data
                     ("email", ConvertDTA(request.Email)),
                     ("citizenId", ConvertDTA(request.CitizenId)),
                     ("birthDate", ConvertDTA(request.BirthDate)),
-                    ("custLastName", ConvertDTA(request.CitizenId)),
+                    ("custLastName", ConvertDTA(request.LastName)),
                     ("telephone", ConvertDTA(request.Telephone)),
                     ("userId", ConvertDTA(request.UserId)));
                 
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DeleteCustomer(DeleteCustomerRequest request)
+        {
+            try
+            {
+                ExecuteNonQuery(SP_DELETE_CUSTOMER,
+                ("custId", ConvertDTA(request.CustId)));
+
                 return true;
             }
             catch (SqlException)
@@ -117,6 +138,30 @@ namespace customer.service.data.Data
                     }                    
                 }
                 return listCustomers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool UpdateCustomer(UpdateCustomerRequest request)
+        {
+            try
+            {
+                ExecuteNonQuery(SP_UPDATE_CUSTOMER,
+                ("custName", ConvertDTA(request.CustName)),
+                ("birthDate", ConvertDTA(request.BirthDate)),
+                ("custLastName", ConvertDTA(request.LastName)),
+                ("telephone", ConvertDTA(request.Telephone)),
+                ("userId", ConvertDTA(request.UserId)),
+                 ("custId", ConvertDTA(request.CustId)));
+
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
             }
             catch (Exception ex)
             {

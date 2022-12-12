@@ -24,8 +24,8 @@ namespace customer.service.service.Service
                 User user = _customerData.GetUserByUserId(request.UserId);
                 if (user == null || user.UserId == 0)
                 {
-                    response.ErrorCode = "004";
-                    response.ErrorMessage = "user id is duplicate";
+                    response.ErrorCode = "002";
+                    response.ErrorMessage = "user id is not found";
                     return response;
                 }
                 Customer customer = _customerData.GetCustomerByCitizenOrEmail(request.CitizenId, request.Email);
@@ -36,6 +36,36 @@ namespace customer.service.service.Service
                     return response;
                 }
                 bool isAdd = _customerData.AddCustomer(request);
+                if (!isAdd)
+                {
+                    response.ErrorCode = "005";
+                    response.ErrorMessage = "Failed to add or update customer";
+                    return response;
+                }
+                response.IsSuccess = true;
+                response.ErrorCode = "000";
+                response.ErrorMessage = "Success";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResponse DeleteCustomer(DeleteCustomerRequest request)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                User user = _customerData.GetUserByUserId(request.UserId);
+                if (user == null || user.UserId == 0)
+                {
+                    response.ErrorCode = "002";
+                    response.ErrorMessage = "user id is not found";
+                    return response;
+                }
+                bool isAdd = _customerData.DeleteCustomer(request);
                 if (!isAdd)
                 {
                     response.ErrorCode = "005";
@@ -69,6 +99,36 @@ namespace customer.service.service.Service
                 listCustomers.ErrorCode = "000";
                 listCustomers.ErrorMessage = "Success";
                 return listCustomers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResponse UpdateCustomer(UpdateCustomerRequest request)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                User user = _customerData.GetUserByUserId(request.UserId);
+                if (user == null || user.UserId == 0)
+                {
+                    response.ErrorCode = "002";
+                    response.ErrorMessage = "user id is not found";
+                    return response;
+                }
+                bool isAdd = _customerData.UpdateCustomer(request);
+                if (!isAdd)
+                {
+                    response.ErrorCode = "005";
+                    response.ErrorMessage = "Failed to add or update customer";
+                    return response;
+                }
+                response.IsSuccess = true;
+                response.ErrorCode = "000";
+                response.ErrorMessage = "Success";
+                return response;
             }
             catch (Exception ex)
             {

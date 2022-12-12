@@ -10,5 +10,7 @@ namespace customer.service.service.IService
     {
         ListCustomer SearchCustomer(SearchCustomerRequest request);
         BaseResponse AddCustomer(AddCustomerRequest request);
+        BaseResponse UpdateCustomer(UpdateCustomerRequest request);
+        BaseResponse DeleteCustomer(DeleteCustomerRequest request);
     }
 }
